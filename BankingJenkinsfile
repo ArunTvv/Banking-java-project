@@ -42,6 +42,12 @@ pipeline{
             sh 'docker push aruntvv/bankingproject:latest'
           }
         }
+     stage('Deploy with ansible'){
+          steps {
+            echo 'this is for ansible'
+            ansiblePlaybook credentialsId: 'sshkey', disableHostKeyChecking: true, installation: 'ansible', inventory: 'deploy.yml', playbook: '', vaultTmpPath: ''
+          }
+        }
      }
    }
 
